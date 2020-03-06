@@ -4,6 +4,12 @@ import "./App.css";
 import Modal from "./components/Modal/Modal";
 import Backdrop from "./components/Backdrop/Backdrop";
 import List from "./components/List/List";
+import CSSTransition from 'react-transition-group/CSSTransition';
+
+const animationTiming = {
+  enter: 400,
+  exit: 1000,
+};
 
 class App extends Component {
   state = {
@@ -26,9 +32,15 @@ class App extends Component {
         <br />
         <br />
         <Transition in={this.state.showBlock} 
-                    timeout={1000}
+                    timeout={animationTiming}
                     mountOnEnter
-                    unmountOnExit>
+                    unmountOnExit
+                    onEnter={()=>console.log('onEnter')}
+                    onEntering={()=>console.log('onEntering')}
+                    onEntered={()=>console.log('onEntered')}
+                    onExit={()=>console.log('onExit')}
+                    onExiting={()=>console.log('onExiting')}
+                    onExited={()=>console.log('onExited')}>
             {state => (<div style={{
                             backgroundColor: 'red',
                             width: 100,
@@ -38,15 +50,16 @@ class App extends Component {
                             opacity: state === 'exiting' ? 0 : 1}}/>)
             }
         </Transition>
-        <Transition 
+        <CSSTransition 
+          classNames='fade-slide'
           in={this.state.modalIsOpen} 
-          timeout={400}
+          timeout={animationTiming}
           mountOnEnter
           unmountOnExit>
             {state => (
               <Modal show={state} closed={this.closeModal}/>
             )}
-        </Transition>
+        </CSSTransition>
         {this.state.modalIsOpen ? <Backdrop show/> : null}
         <button className="Button" onClick={this.showModal}>Open Modal</button>
         <h3>Animating Lists</h3>
