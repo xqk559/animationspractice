@@ -40,9 +40,9 @@ class App extends Component {
         </Transition>
         <Transition 
           in={this.state.modalIsOpen} 
-          timeout={300}
+          timeout={400}
           mountOnEnter
-          mountOnExit>
+          unmountOnExit>
             {state => (
               <Modal show={state} closed={this.closeModal}/>
             )}
