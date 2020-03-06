@@ -51,7 +51,14 @@ class App extends Component {
             }
         </Transition>
         <CSSTransition 
-          classNames='fade-slide'
+          classNames={{
+            enter: '',
+            enterActive: 'ModalOpen',
+            exit: '',
+            exitActive: 'ModalClosed',
+            appear: '',
+            appearActive: '', 
+          }}
           in={this.state.modalIsOpen} 
           timeout={animationTiming}
           mountOnEnter
