@@ -5,6 +5,8 @@ import Modal from "./components/Modal/Modal";
 import Backdrop from "./components/Backdrop/Backdrop";
 import List from "./components/List/List";
 import CSSTransition from 'react-transition-group/CSSTransition';
+import * as d3 from 'd3';
+import BarChart from './barchart';
 
 const animationTiming = {
   enter: 400,
@@ -27,6 +29,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <BarChart />
         <h1>React Animations</h1>
         <button className="Button" onClick={()=> this.setState(prevState => ({showBlock: !prevState.showBlock}))}>Toggle</button>
         <br />
